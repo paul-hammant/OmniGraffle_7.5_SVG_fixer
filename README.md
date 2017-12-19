@@ -1,6 +1,8 @@
-OmniGraffle SVG 7.5 exports SVG that is occasionally broken.
+OmniGraffle SVG 7.5 exports SVG that occasionally has text formatting glitches (yes its creators know about the problem).
 
 # Example of broken SVG inside HTML
+
+The problems are highlighted in yellow in this screenshot.
 
 ![image](https://user-images.githubusercontent.com/82182/34155432-43abf2d2-e487-11e7-8de1-576a8245dc9d.png)
 
@@ -53,8 +55,7 @@ function logResult(number, valueY) {
 
 # The same example fixed!
 
-![image](![image](https://user-images.githubusercontent.com/82182/34155543-c13c561a-e487-11e7-8315-e4e5e713871c.png)
-)
+![image](https://user-images.githubusercontent.com/82182/34155543-c13c561a-e487-11e7-8315-e4e5e713871c.png)
 
 ^ [example_WITH_javascript.html](/paul-hammant/OmniGraffle_7.5_SVG_fixer/blob/master/example_WITH_javascript.html)
 
