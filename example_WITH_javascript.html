@@ -1,4 +1,7 @@
 <html>
+  <head>
+     <meta charset="UTF-8">
+  </head>
   <body>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="139 -165 728 472" width="728pt" height="472pt" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata> Produced by OmniGraffle 7.5
@@ -200,8 +203,44 @@
     </g>
   </g>
 </svg>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-  // JavaScript magic here to fix the above tspan elements
+// JavaScript magic here to fix the above tspan elements
+$('text', 'svg').each(function() {
+    var TEXT_LENGTH = 'textLength',
+        $prev, prevLength = 0, prevY,
+        $this, thisLength = 0, thisY,
+        sameCounter = 1;
+
+    $(this).children('tspan').each(function() {
+        $this = $(this),
+        thisY = $this.attr('y'),
+        thisLength = parseFloat($this.attr(TEXT_LENGTH));
+
+        if (prevY === thisY) {
+            sameCounter++;
+            prevLength += thisLength;
+            $prev.attr(TEXT_LENGTH, prevLength);
+            $prev.text($prev.text() + $this.text());
+            $this.remove();
+        } else {
+            logResult(sameCounter, thisY);
+            $prev = $this;
+            prevY = thisY;
+            sameCounter = 1;
+            prevLength = thisLength;
+        }
+    });
+
+    logResult(sameCounter, thisY);
+});
+
+function logResult(number, valueY) {
+    if (number > 1) {
+       console.log('Combine ' + number + ' <tspan> blocks with the same y = ' + valueY);
+    }
+}
 </script>
 
   </body>
